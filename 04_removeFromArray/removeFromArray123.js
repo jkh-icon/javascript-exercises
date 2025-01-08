@@ -1,14 +1,21 @@
 const removeFromArray = function(array, ...args) {
 
-    const newArray = []
-
-    array.forEach((item) => {
-        if (!args.includes(item)) {
-            newArray.push(item);
-        }
-    })
+    remove = []
+    for (let i = 0; i < arguments.length - 1; i++) {
+        let index = array.indexOf(args[i]);
+        while (index !== -1) {
+            remove.push(index);
+            index = array.indexOf(args[i], index + 1);
+        };
+    };
+    remove.sort(function(a, b){return a-b}) // sorting numerical values instead of string
+    console.log(remove)
+     for (let j = remove.length -1; j >= 0; j--) {
+        array.splice(remove[j], 1);
+        
+     }
   
-    return newArray;
+    return array;
 };
 console.log(removeFromArray([1,2,3,4], 3, 2))
 // Do not edit below this line
